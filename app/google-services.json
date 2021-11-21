@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "130166410945",
+    "project_id": "data-storage-68708",
+    "storage_bucket": "data-storage-68708.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130166410945:android:f78c881efa5188237c0e40",
+        "android_client_info": {
+          "package_name": "com.gwabs.datastorage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "130166410945-5jg6v1efqq5fgcdp0np4tr3rv942hui3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBeg6xlQFinZp4FtcAhxaQvvKPsvssU4E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "130166410945-5jg6v1efqq5fgcdp0np4tr3rv942hui3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
