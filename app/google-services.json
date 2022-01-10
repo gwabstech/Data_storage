@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "130166410945",
-    "project_id": "data-storage-68708",
-    "storage_bucket": "data-storage-68708.appspot.com"
+    "project_number": "764589618990",
+    "firebase_url": "https://mysongs-app-5f129-default-rtdb.firebaseio.com",
+    "project_id": "mysongs-app-5f129",
+    "storage_bucket": "mysongs-app-5f129.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:130166410945:android:f78c881efa5188237c0e40",
+        "mobilesdk_app_id": "1:764589618990:android:0866231ea7c56d462aacbf",
         "android_client_info": {
-          "package_name": "com.gwabs.datastorage"
+          "package_name": "com.gwabs.Ehmana_admin"
         }
       },
       "oauth_client": [
         {
-          "client_id": "130166410945-5jg6v1efqq5fgcdp0np4tr3rv942hui3.apps.googleusercontent.com",
+          "client_id": "764589618990-bjpm6h1a01n46tgr1bgq130qsmjk8pa7.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBBeg6xlQFinZp4FtcAhxaQvvKPsvssU4E"
+          "current_key": "AIzaSyBTHQimw-wuQ5b2C1ZRCBAtf8eLOWsbMCs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "130166410945-5jg6v1efqq5fgcdp0np4tr3rv942hui3.apps.googleusercontent.com",
+              "client_id": "764589618990-bjpm6h1a01n46tgr1bgq130qsmjk8pa7.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

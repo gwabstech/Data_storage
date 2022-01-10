@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.gwabs.datastorage">
+    package="com.gwabs.Ehmana_admin">
 
 
 
@@ -18,10 +18,11 @@
         android:theme="@style/Theme.DataStorage"
         tools:ignore="AllowBackup">
         <activity
-            android:name=".HomeActivity"
+            android:name="com.gwabs.Ehmana_admin.HomeActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-        <activity android:name=".Login_and_Signup"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+        <activity android:name="com.gwabs.Ehmana_admin.Login_and_Signup"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,4 +1,4 @@
-package com.gwabs.datastorage;
+package com.gwabs.Ehmana_admin;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;

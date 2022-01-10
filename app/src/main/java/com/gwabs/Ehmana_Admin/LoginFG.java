@@ -1,4 +1,4 @@
-package com.gwabs.datastorage;
+package com.gwabs.Ehmana_admin;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -21,8 +21,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.Objects;
 
 
 public class LoginFG extends Fragment  implements View.OnClickListener{

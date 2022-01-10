@@ -1,6 +1,5 @@
-package com.gwabs.datastorage;
+package com.gwabs.Ehmana_admin;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -13,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +34,6 @@ import com.google.firebase.storage.UploadTask;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.net.URLConnection;
 import java.util.Objects;
 
 import static android.app.Activity.RESULT_OK;
@@ -90,8 +89,12 @@ public class AddFileFg extends Fragment {
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (TextUtils.isEmpty(fileName.getText().toString())){
+                    fileName.setError("Enter SongName");
+                }else {
+                    selectFile();
+                }
 
-                selectFile();
 
             }
         });
@@ -100,55 +103,69 @@ public class AddFileFg extends Fragment {
 
     private void selectFile() {
 
+/*
         Intent intent = new Intent();
-        intent.setType("*/*");
+
         intent.setAction(Intent.ACTION_GET_CONTENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-        startActivityForResult(intent,100);
+        intent.putExtra(Intent.EXTRA_MIME_TYPES,"")
+
+
+ */
+
+        Intent audio = new Intent();
+        audio.setType("*/*");
+        audio.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(audio, "Select Audio"), 100);
+
 
     }
 
 
     private void UploadFile(Uri data){
 
-        final ProgressDialog progressDialog = new ProgressDialog(requireContext());
-        progressDialog.setTitle("Uploading...");
-        progressDialog.show();
-        StorageReference reference = storageReference.child(firebaseUser.getEmail()+"/"+System.currentTimeMillis());
-        reference.putFile(data).
-                addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-                        while (!uriTask.isComplete());
-                        Uri uri = uriTask.getResult();
 
-                        assert uri != null;
-                        fileModel fileModel = new fileModel(fileName.getText().toString(),uri.toString());
-                        databaseReference.child(Objects.requireNonNull(databaseReference.push().getKey())).setValue(fileModel);
-                        Toast.makeText(requireContext(),"file uploaded succefuly",Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
-                        fragmentManager = getActivity().getSupportFragmentManager();
-                        fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.contener_fragment,new HomeFragment());
-                        fragmentTransaction.commit();
-                    }
-                }).
-                addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull @NotNull Exception e) {
-                        Toast.makeText(requireContext(),e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+            final ProgressDialog progressDialog = new ProgressDialog(requireContext());
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
 
-                    }
-                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(@NonNull @NotNull UploadTask.TaskSnapshot snapshot) {
+            StorageReference reference = storageReference.child(firebaseUser.getEmail()+"/"+System.currentTimeMillis());
+            reference.putFile(data).
+                    addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                            while (!uriTask.isComplete());
+                            Uri uri = uriTask.getResult();
 
-                double progress = (100.0*snapshot.getBytesTransferred())/snapshot.getTotalByteCount();
-                progressDialog.setMessage("Uploaded: "+(int)progress+"%");
+                            assert uri != null;
+                            fileModel fileModel = new fileModel(fileName.getText().toString(),uri.toString());
+                            databaseReference.child(Objects.requireNonNull(databaseReference.push().getKey())).setValue(fileModel);
+                            Toast.makeText(requireContext(),"file uploaded succefuly",Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                            fragmentManager = getActivity().getSupportFragmentManager();
+                            fragmentTransaction = fragmentManager.beginTransaction();
+                            fragmentTransaction.replace(R.id.contener_fragment,new HomeFragment());
+                            fragmentTransaction.commit();
+                        }
+                    }).
+                    addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull @NotNull Exception e) {
+                            Toast.makeText(requireContext(),e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
 
-            }
-        });
+                        }
+                    }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(@NonNull @NotNull UploadTask.TaskSnapshot snapshot) {
+
+                    double progress = (100.0*snapshot.getBytesTransferred())/snapshot.getTotalByteCount();
+                    progressDialog.setMessage("Uploaded: "+(int)progress+"%");
+
+                }
+            });
+
+
 
     }
 
