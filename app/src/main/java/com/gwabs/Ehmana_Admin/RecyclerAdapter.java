@@ -35,13 +35,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.FileName.setText(FileName.get(position).toString());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        listener.onItemClick(holder.itemView,position);
 
-                listener.onItemClick(v,holder.getAdapterPosition());
-            }
-        });
     }
 
     @Override
@@ -58,7 +53,6 @@ class ViewHolder  extends RecyclerView.ViewHolder{
     public ViewHolder(@NonNull View itemView) {
         super(itemView);
         FileName = itemView.findViewById(R.id.FileName);
-        Download = itemView.findViewById(R.id.imgDownload);
         Delete = itemView.findViewById(R.id.imgDelete);
 
     }

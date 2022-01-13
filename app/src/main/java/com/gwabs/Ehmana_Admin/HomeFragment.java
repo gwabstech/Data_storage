@@ -4,11 +4,13 @@ import android.annotation.SuppressLint;
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -138,12 +140,32 @@ public class HomeFragment extends Fragment {
                 DeleteFile.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                       // Toast.makeText(requireContext(), "I was clicked", Toast.LENGTH_SHORT).show();
-                        deleteFile(FileName.get(position), FileURl.get(position),position);
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+                        builder.setTitle(String.format("Delete %s", FileName.get(position)));
+                        builder.setMessage(String.format("Are you sure you want to delete %s ..?", FileName.get(position)));
+                        builder.setCancelable(true);
+                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Toast.makeText(requireContext(), "I was clicked", Toast.LENGTH_SHORT).show();
+                                deleteFile(FileName.get(position), FileURl.get(position),position);
+                            }
+                        });
+                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+
+                        AlertDialog alertDialog =builder.create();
+                        alertDialog.show();
+
 
                     }
                 });
-
+/*
                 ImageView Downloadimg = itemView.findViewById(R.id.imgDownload);
                 Downloadimg.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -162,6 +184,8 @@ public class HomeFragment extends Fragment {
                     }
 
                 });
+
+ */
 
                 TextView filename = itemView.findViewById(R.id.FileName);
                 filename.setOnClickListener(new View.OnClickListener() {
@@ -239,6 +263,10 @@ public class HomeFragment extends Fragment {
         fragmentTransaction.replace(R.id.contener_fragment,new HomeFragment());
         fragmentTransaction.commit();
         
+    }
+
+    private void showDeleteDialog(){
+
     }
 
 }
